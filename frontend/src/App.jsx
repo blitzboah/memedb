@@ -1,14 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   return(
-    <p>
-      memeboard is real!
-    </p>
-  )
+    <BrowserRouter>
+      <Navbar>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          {/* <Route path="/add" element={<Add/>}/> */}
+        </Routes>
+      </Navbar>
+    </BrowserRouter>
+  );
 }
 
 export default App
