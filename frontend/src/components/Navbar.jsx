@@ -1,101 +1,46 @@
-import React, { useEffect, useState } from "react";
-import Home from "./Home";
-import axios from "axios";
+import React, { useState } from 'react';
+import UploadMemeModal from './UploadMemeModal'; // Import the modal component
 
-const Navbar = ({ onSelectCategory, onSearch }) => {
-  const getInitialTheme = () => {
-    const storedTheme = localStorage.getItem("theme");
-    return storedTheme ? storedTheme : "light-theme";
+function Navbar() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
-  const [theme, setTheme] = useState(getInitialTheme());
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark-theme" ? "light-theme" : "dark-theme";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
-
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
 
   return (
     <>
-      <header>
-        <nav className="navbar navbar-expand-lg fixed-top">
-          <div className="container-fluid">
-            <a className="navbar-brand" href="https://blitzboah.github.io">
-              Telusko
-            </a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/add_product">
-                    Add Product
-                  </a>
-                </li>
-
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="/"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Categories
-                </a>
-
-                <li className="nav-item"></li>
-              </ul>
-              <button className="theme-btn" onClick={() => toggleTheme()}>
-                {theme === "dark-theme" ? (
-                  <i className="bi bi-moon-fill"></i>
-                ) : (
-                  <i className="bi bi-sun-fill"></i>
-                )}
-              </button>
-              <div className="d-flex align-items-center cart">
-                <i
-                  className="bi bi-cart me-2"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  Cart
-                </i>
-
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <div />
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <nav className="bg-gray-800 p-4 flex justify-between items-center w-full">
+        <div className="flex items-center">
+          <img
+            src=".././memeboard.png"
+            alt="Logo"
+            className="h-10 w-40"
+          />
+        </div>
+  
+        <div className="flex items-center">
+          <a
+            href="http://dingboard.com/"
+            className="text-white text-lg font-medium hover:text-gray-300 mr-4"
+          >
+            Edit
+          </a>
+          <button
+            onClick={openModal}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Upload
+          </button>
+        </div>
+      </nav>
+      {isModalOpen && <UploadMemeModal closeModal={closeModal} />}
     </>
   );
-};
+}
 
 export default Navbar;
