@@ -16,4 +16,12 @@ public class MemeService {
     public List<Meme> getAllMemes(){
        return memeRepo.findAll();
     }
+
+    public Meme getMemeById(int id) {
+        return memeRepo.findById(id).orElse(null);
+    }
+
+    public void deleteMeme(int id) {
+        memeRepo.deleteById(id);
+    }
 }
