@@ -1,21 +1,24 @@
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import axios from 'axios';
 import '../App.css';
 
-function UploadMemeModal({ closeModal }) {
+function UploadMemeModal({ closeModal, onMemeAdded }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     handleImageUpload(acceptedFiles[0]);
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ 
-    onDrop, 
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
     accept: 'image/*',
-    multiple: false 
+    multiple: false
   });
 
   const handleImageUpload = (file) => {
@@ -34,17 +37,47 @@ function UploadMemeModal({ closeModal }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log({ name, description, image });
-    closeModal();
+    setIsUploading(true);
+    setError(null);
+  
+    if (!name || !description || !image) {
+      setError('Please fill in all fields and upload an image.');
+      setIsUploading(false);
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append('meme', new Blob([JSON.stringify({ name, description })], { type: 'application/json' }));
+    formData.append('imageFile', image);
+  
+    console.log('Submitting formData:', formData);
+  
+    try {
+      const response = await axios.post('http://localhost:8080/api/memes', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Meme added successfully:', response.data);
+      if (onMemeAdded) {
+        onMemeAdded(response.data);
+      }
+      closeModal();
+    } catch (error) {
+      console.error('Error adding meme:', error);
+      setError(error.response?.data || 'Failed to add meme. Please try again.');
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white border border-gray-200 rounded-lg p-6 w-96 max-h-[90vh] overflow-y-auto">
         <h2 className="text-xl font-semibold mb-4 text-gray-800">Add Meme</h2>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit} onPaste={handlePaste}>
           <div className="mb-4">
             <label className="block mb-2 text-gray-700" htmlFor="name">Name</label>
@@ -69,8 +102,8 @@ function UploadMemeModal({ closeModal }) {
           </div>
           <div className="mb-4">
             <label className="block mb-2 text-gray-700">Upload Image</label>
-            <div 
-              {...getRootProps()} 
+            <div
+              {...getRootProps()}
               className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer ${
                 isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
               }`}
@@ -89,15 +122,16 @@ function UploadMemeModal({ closeModal }) {
               type="button"
               onClick={closeModal}
               className="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2 hover:bg-gray-400"
+              disabled={isUploading}
             >
               Cancel
             </button>
             <button
               type="submit"
               className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-              disabled={!image}
+              disabled={!image || isUploading}
             >
-              Upload
+              {isUploading ? 'Uploading...' : 'Upload'}
             </button>
           </div>
         </form>
