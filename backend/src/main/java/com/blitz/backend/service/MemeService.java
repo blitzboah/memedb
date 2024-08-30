@@ -4,7 +4,9 @@ import com.blitz.backend.model.Meme;
 import com.blitz.backend.repository.MemeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -23,5 +25,12 @@ public class MemeService {
 
     public void deleteMeme(int id) {
         memeRepo.deleteById(id);
+    }
+
+    public Meme addMeme(Meme meme, MultipartFile imageFile) throws IOException {
+        meme.setImageName(imageFile.getOriginalFilename());
+        meme.setImageType(imageFile.getContentType());
+        meme.setImageData(imageFile.getBytes());
+        return memeRepo.save(meme);
     }
 }

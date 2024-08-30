@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -34,5 +35,16 @@ public class MemeController {
     @DeleteMapping("/memes/{id}")
     public void deleteMeme(@PathVariable int id){
         memeService.deleteMeme(id);
+    }
+
+    @PostMapping("/memes")
+    public ResponseEntity<?> addMeme(@RequestPart Meme meme, @RequestPart MultipartFile imageFile){
+        try{
+            Meme meme1 = memeService.addMeme(meme, imageFile);
+            return new ResponseEntity<>(meme1, HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
