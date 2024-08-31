@@ -80,7 +80,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit} onPaste={handlePaste}>
           <div className="mb-4">
-            <label className="block mb-2 text-gray-700" htmlFor="name">Name</label>
+            <label className="block mb-2 text-gray-700" htmlFor="name">name</label>
             <input
               type="text"
               id="name"
@@ -91,7 +91,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 text-gray-700" htmlFor="description">Description</label>
+            <label className="block mb-2 text-gray-700" htmlFor="description">description</label>
             <textarea
               id="description"
               value={description}
@@ -101,7 +101,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 text-gray-700">Upload Image</label>
+            <label className="block mb-2 text-gray-700">upload image</label>
             <div
               {...getRootProps()}
               className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer ${
@@ -124,14 +124,14 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
               className="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2 hover:bg-gray-400"
               disabled={isUploading}
             >
-              Cancel
+              cancel
             </button>
             <button
               type="submit"
               className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
               disabled={!image || isUploading}
             >
-              {isUploading ? 'Uploading...' : 'Upload'}
+              {isUploading ? 'uploading...' : 'upload'}
             </button>
           </div>
         </form>
