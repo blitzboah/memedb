@@ -33,4 +33,20 @@ public class MemeService {
         meme.setImageData(imageFile.getBytes());
         return memeRepo.save(meme);
     }
+
+    public Meme updateMeme(int id, Meme updatedMeme, MultipartFile imageFile) throws IOException {
+        Meme existingMeme = memeRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Meme not found"));
+
+        existingMeme.setName(updatedMeme.getName());
+        existingMeme.setDescription(updatedMeme.getDescription());
+
+        if (imageFile != null && !imageFile.isEmpty()) {
+            existingMeme.setImageName(imageFile.getOriginalFilename());
+            existingMeme.setImageType(imageFile.getContentType());
+            existingMeme.setImageData(imageFile.getBytes());
+        }
+
+        return memeRepo.save(existingMeme);
+    }
 }

@@ -19,6 +19,5 @@ public class Meme {
 
     private String imageName;
     private String imageType;
-    @Lob
     private byte[] imageData;
 }
