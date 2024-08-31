@@ -74,13 +74,12 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white border border-gray-200 rounded-lg p-6 w-96 max-h-[90vh] overflow-y-auto">
-        <h2 className="text-xl font-semibold mb-4 text-gray-800">Add Meme</h2>
+    <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+      <div className="bg-blue-10 border border-gray-200 rounded-lg p-6 w-96 max-h-[90vh] overflow-y-auto">
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit} onPaste={handlePaste}>
           <div className="mb-4">
-            <label className="block mb-2 text-gray-700" htmlFor="name">name</label>
+            <label className="block mb-2 text-white-700" htmlFor="name">name</label>
             <input
               type="text"
               id="name"
@@ -91,7 +90,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 text-gray-700" htmlFor="description">description</label>
+            <label className="block mb-2 text-white-700" htmlFor="description">description</label>
             <textarea
               id="description"
               value={description}
@@ -101,7 +100,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 text-gray-700">upload image</label>
+            <label className="block mb-2 text-white-700">upload image</label>
             <div
               {...getRootProps()}
               className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer ${
@@ -112,9 +111,9 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
               {previewUrl ? (
                 <img src={previewUrl} alt="Preview" className="max-w-full h-auto mb-2" />
               ) : (
-                <p>Drag & drop an image here, or click to select a file</p>
+                <p>drag & drop an image here, or click to select a file</p>
               )}
-              <p className="text-sm text-gray-500 mt-2">You can also paste an image directly</p>
+              <p className="text-sm text-white-500 mt-2">you can also paste an image directly</p>
             </div>
           </div>
           <div className="flex justify-end">

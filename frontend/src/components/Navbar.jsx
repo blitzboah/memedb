@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import UploadMemeModal from './UploadMemeModal'; // Import the modal component
+import UploadMemeModal from './UploadMemeModal';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
