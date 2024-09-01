@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Memes from './components/Memes';
 import Navbar from './components/Navbar';
 import MemePage from './components/MemeId';
+import MemeSearch from './components/MemeSearch'
 
 
 function App(){
@@ -14,6 +15,7 @@ function App(){
         <Routes>
           <Route path="/" element={<Memes />} />
           <Route path="/memes/:id" element={<MemePage />} />
+          <Route path="/search" element={<MemeSearch />} />
         </Routes>
       </div>
     </Router>
