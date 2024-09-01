@@ -64,4 +64,10 @@ public class MemeController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/memes/search")
+    public ResponseEntity<List<Meme>> searchMeme(@RequestParam String keyword){
+        List<Meme> searchedMeme = memeService.searchMemes(keyword);
+        return new ResponseEntity<>(searchedMeme, HttpStatus.OK);
+    }
 }

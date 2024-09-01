@@ -49,4 +49,8 @@ public class MemeService {
 
         return memeRepo.save(existingMeme);
     }
+
+    public List<Meme> searchMemes(String keyword){
+        return memeRepo.searchMemeByKeyword(keyword);
+    }
 }
