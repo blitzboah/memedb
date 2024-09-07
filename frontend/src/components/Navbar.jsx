@@ -28,9 +28,9 @@ function Navbar() {
         <Link to="/">
           <div className="flex items-center">
             <img
-              src=".././memeboard.png"
+              src=".././memedb.png"
               alt="Logo"
-              className="h-10 w-40"
+              className="h-10 w-25"
             />
           </div>
         </Link>
