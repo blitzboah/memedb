@@ -43,7 +43,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
     setError(null);
   
     if (!name || !description || !image) {
-      setError('Please fill in all fields and upload an image.');
+      setError('fill all the fields.');
       setIsUploading(false);
       return;
     }
@@ -52,7 +52,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
     formData.append('meme', new Blob([JSON.stringify({ name, description })], { type: 'application/json' }));
     formData.append('imageFile', image);
   
-    console.log('Submitting formData:', formData);
+    console.log('submitting formData:', formData);
   
     try {
       const response = await axios.post('http://localhost:8080/api/memes', formData, {

@@ -53,6 +53,7 @@ function MemePage() {
           'Content-Type': 'multipart/form-data',
         },
       });
+      navigate('/')
       console.log('Server response:', response.data);
       return response.data;
     } catch (error) {
