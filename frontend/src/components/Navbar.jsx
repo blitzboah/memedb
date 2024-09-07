@@ -51,7 +51,8 @@ function Navbar() {
             </button>
           </form>
           <a
-            href="http://dingboard.com/"
+            target="_blank" rel="noopener noreferrer"
+            href="http://dingboard.com"
             className="text-white text-lg font-medium hover:text-gray-300 mr-4"
           >
             edit
