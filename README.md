@@ -40,3 +40,10 @@ to run memedb, the following dependencies need to be installed:
    ```bash
    sh memedb.sh
    ```
+
+   or 
+
+   ```bash
+   chmod +x memedb.sh
+   ./memedb.sh
+   ```
