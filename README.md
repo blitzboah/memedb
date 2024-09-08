@@ -36,6 +36,7 @@ to run memedb, the following dependencies need to be installed:
 
 ### using `memedb.sh` Script
 1. clone the repo and change directory to memedb
-2. ```bash
+2. -run the memedb.sh script to install dependencies and run
+   ```bash
    sh memedb.sh
    ```
