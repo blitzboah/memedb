@@ -47,3 +47,4 @@ to run memedb, the following dependencies need to be installed:
    chmod +x memedb.sh
    ./memedb.sh
    ```
+3. to stop just press Ctrl+C
