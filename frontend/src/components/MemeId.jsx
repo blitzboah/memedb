@@ -52,7 +52,6 @@ function MemePage() {
   const updateMeme = async (memeData) => {
     try {
       await saveMemeToIndexedDB(memeData);
-      window.location.reload(); // Refresh the page after successfully saving the meme
     } catch (error) {
       console.error("Failed to update:", error.message);
       throw new Error("Failed to update, try later");
