@@ -28,7 +28,7 @@ function Navbar() {
         <Link to="/">
           <div className="flex items-center">
             <img
-              src="../../memedb.png"
+              src="./memedb.png"
               alt="Logo"
               className="h-10 w-25"
             />
