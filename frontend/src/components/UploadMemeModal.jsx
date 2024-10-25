@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { saveMemeToIndexedDB } from '../../helpers/indexeddb-helper'; // Adjust the import path as necessary
-import '../App.css';
+import { saveMemeToIndexedDB } from '../../helpers/indexeddb-helper';
 
 function UploadMemeModal({ closeModal, onMemeAdded }) {
   const [name, setName] = useState('');
@@ -50,32 +49,57 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
 
     try {
       // Save the meme to IndexedDB
-      const memeId = Date.now(); // Generate a unique ID for the meme
-      await saveMemeToIndexedDB({
+      const memeId = Date.now();
+      const imageData = await convertFileToBase64(image);
+      
+      const newMeme = {
         id: memeId,
         name,
         description,
         imageType: image.type,
-        imageData: await convertFileToBase64(image), // Convert the image to Base64
-      });
+        imageData,
+      };
 
+      await saveMemeToIndexedDB(newMeme);
+
+      // Call onMemeAdded with the complete meme object
       if (onMemeAdded) {
-        onMemeAdded({ id: memeId, name, description });
+        onMemeAdded(newMeme);
       }
-      closeModal();
+      
+      // Cleanup and close modal
+      cleanupAndClose();
     } catch (error) {
       console.error('Error adding meme:', error);
       setError('Failed to add meme. Please try again.');
-    } finally {
       setIsUploading(false);
     }
   };
 
-  // Helper function to convert file to Base64
+  const cleanupAndClose = () => {
+    // Cleanup preview URL to prevent memory leaks
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
+    
+    // Reset form state
+    setName('');
+    setDescription('');
+    setImage(null);
+    setPreviewUrl('');
+    setIsUploading(false);
+    setError(null);
+    window.location.reload(); //based
+
+    
+    // Close the modal
+    closeModal();
+  };
+
   const convertFileToBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result.split(',')[1]); // Get Base64 string
+      reader.onloadend = () => resolve(reader.result.split(',')[1]);
       reader.onerror = reject;
       reader.readAsDataURL(file);
     });
@@ -127,7 +151,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
           <div className="flex justify-end">
             <button
               type="button"
-              onClick={closeModal}
+              onClick={cleanupAndClose}
               className="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2 hover:bg-gray-400"
               disabled={isUploading}
             >
