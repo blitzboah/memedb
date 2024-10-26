@@ -41,8 +41,8 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
     setIsUploading(true);
     setError(null);
 
-    if (!name || !description || !image) {
-      setError('Fill all the fields.');
+    if (!image) {
+      setError('atleast add an image my g!');
       setIsUploading(false);
       return;
     }
@@ -118,7 +118,6 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full p-2 border rounded text-gray-800"
-              required
             />
           </div>
           <div className="mb-4">
@@ -128,11 +127,10 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="w-full p-2 border rounded text-gray-800"
-              required
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 text-white-700">upload Image</label>
+            <label className="block mb-2 text-white-700">upload image</label>
             <div
               {...getRootProps()}
               className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer ${
@@ -145,7 +143,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
               ) : (
                 <p>drag & drop an image here, or click to select a file</p>
               )}
-              <p className="text-sm text-white-500 mt-2">You can also paste an image directly</p>
+              <p className="text-sm text-white-500 mt-2">you can also paste an image directly</p>
             </div>
           </div>
           <div className="flex justify-end">
