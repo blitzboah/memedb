@@ -12,6 +12,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@vercel/analytics": "^1.3.2",
     "axios": "^1.7.5",
     "clipboard-copy": "^4.0.1",
     "idb": "^8.0.0",

@@ -4,7 +4,7 @@ import Memes from './components/Memes';
 import Navbar from './components/Navbar';
 import MemePage from './components/MemeId';
 import MemeSearch from './components/MemeSearch'
-
+import { Analytics } from "@vercel/analytics/react";
 
 function App(){
   return(
