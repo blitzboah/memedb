@@ -6,8 +6,8 @@ import MemePage from './components/MemeId';
 import MemeSearch from './components/MemeSearch'
 import { Analytics } from "@vercel/analytics/react";
 
-function App(){
-  return(
+function App() {
+  return (
     <Router>
       <div className="bg-gray-900 text-white min-h-screen">
         <Navbar />
@@ -17,9 +17,11 @@ function App(){
           <Route path="/memes/:id" element={<MemePage />} />
           <Route path="/search" element={<MemeSearch />} />
         </Routes>
+        <Analytics />
       </div>
     </Router>
-  )
+  );
 }
 
 export default App;
+
