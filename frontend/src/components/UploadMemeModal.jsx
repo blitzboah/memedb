@@ -117,7 +117,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-2 border rounded text-gray-800"
+              className="bg-black w-full p-2 border rounded text-white"
             />
           </div>
           <div className="mb-4">
@@ -126,7 +126,7 @@ function UploadMemeModal({ closeModal, onMemeAdded }) {
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full p-2 border rounded text-gray-800"
+              className="bg-black w-full p-2 border rounded text-white"
             />
           </div>
           <div className="mb-4">

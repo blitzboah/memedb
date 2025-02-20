@@ -91,10 +91,10 @@ function SearchResults() {
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {memes.length === 0 ? (
-          <p className="col-span-full text-center">No memes found for this search.</p>
+          <p className="col-span-full text-center">no memes found for this search.</p>
         ) : (
           memes.map((meme) => (
-            <div key={meme.id} className="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
+            <div key={meme.id} className="relative rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
               <Link 
                 to={`/memes/${meme.id}`}
                 className="block"
@@ -108,7 +108,7 @@ function SearchResults() {
                 </div>
                 <div className="p-4">
                   <h2 className="text-lg font-semibold mb-2 line-clamp-2">{meme.name}</h2>
-                  <p className="text-gray-400 text-sm italic truncate">- {meme.description}</p>
+                  <p className="text-white text-sm italic truncate">- {meme.description}</p>
                 </div>
               </Link>
               <button

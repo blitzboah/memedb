@@ -24,7 +24,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="bg-gray-800 p-4 flex justify-between items-center w-full">
+      <nav className="p-4 flex justify-between items-center w-full">
         <Link to="/">
           <div className="flex items-center">
             <img
@@ -40,12 +40,12 @@ function Navbar() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="search"
-              className="text-black px-3 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+              placeholder="search..."
+              className="bg-black text-white px-3 py-2 rounded-2-md focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
             <button
               type="submit"
-              className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="text-white px-4 py-2 rounded-r-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-600"
             >
               search
             </button>
@@ -59,7 +59,7 @@ function Navbar() {
           </a>
           <button
             onClick={openModal}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="text-white px-4 py-2 rounded hover:bg-blue-700"
           >
             add
           </button>
