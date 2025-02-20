@@ -53,7 +53,7 @@ function Navbar() {
           <a
             target="_blank" rel="noopener noreferrer"
             href="http://dingboard.com"
-            className="text-white text-lg font-medium hover:text-gray-300 mr-4"
+            className="text-white font-medium hover:text-gray-300 mr-4"
           >
             edit
           </a>
